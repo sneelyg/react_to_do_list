@@ -4,22 +4,41 @@ import {Tarea} from './tareas.jsx';
 
 export const Lista = () => {
 
-    const [inputValue, setInputValue] = useState('');
+    const [inputValue, setInputValue] = useState("");
+    const [tareas, setTareas] = useState ([]);
 
     return (
 
-        <div className = "container">
+        <div className = "container" style ={{width :"70%"}}>
             <h1>To Do List</h1>
             <input type="text" 
             onChange={e => setInputValue(e.target.value)}
-             value={inputValue} />
+             value={inputValue} 
+             style ={{width :"70%"}}
+             onKeyUp ={ (event)=>{
+                if (event.key === "Enter" && inputValue != "") {
+                  setTareas ([...tareas, inputValue]);
+                  setInputValue("");
+                  console.log("enter");
+                }
+            }}
+             placeholder="Agrega una tarea"/>
              <div>
-                <Tarea tareapendiente="Lavar los platos"/>
-                <Tarea tareapendiente="Cocinar"/>
+                {
+                    tareas.map((task, index)=> {
+                        return (
+                            <Tarea  tareapendiente={task} />
+                        )
+                    })
+                }
+                
             </div>
         </div>
     )
 }
 
 
-var tareas = [];
+
+
+
+
