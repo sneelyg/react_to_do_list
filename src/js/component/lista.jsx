@@ -6,15 +6,23 @@ export const Lista = () => {
 
     const [inputValue, setInputValue] = useState("");
     const [tareas, setTareas] = useState ([]);
+    var contador = 0;
+
+    const DeleteTask =(e)=>{
+
+    }
+
 
     return (
 
-        <div className = "container" style ={{width :"70%"}}>
+        <div id = "lista" 
+        className = "container" style ={{width :"80%"}}>
             <h1>To Do List</h1>
+            <h2>Move that ass!!</h2>
             <input type="text" 
             onChange={e => setInputValue(e.target.value)}
              value={inputValue} 
-             style ={{width :"70%"}}
+             style ={{width :"90%"}}
              onKeyUp ={ (event)=>{
                 if (event.key === "Enter" && inputValue != "") {
                   setTareas ([...tareas, inputValue]);
@@ -22,12 +30,13 @@ export const Lista = () => {
                   console.log("enter");
                 }
             }}
-             placeholder="Agrega una tarea"/>
-             <div>
+             placeholder="Agrega una tarea"
+             />
+             <div id="tareas">
                 {
                     tareas.map((task, index)=> {
                         return (
-                            <Tarea  tareapendiente={task} />
+                            <Tarea id={index} tareapendiente={task} />
                         )
                     })
                 }
